@@ -438,6 +438,7 @@ static void pocsag_printmessage(struct demod_state *s, bool sync)
                 if(pocsag_mode == POCSAG_MODE_AUTO)
                     verbprintf(3, "Certainty: %5i  ", guess_alpha);
                 verbprintf(0, "Alpha:   %s", alpha_string);
+                verbprintf(0, "  Numeric: %s", num_string);
                 if(!sync) verbprintf(2,"<LOST SYNC>");
                 verbprintf(0,"\n");
             }
