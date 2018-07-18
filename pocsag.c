@@ -245,7 +245,7 @@ static int guesstimate_numeric(const unsigned char cp, int pos)
 
 static unsigned int print_msg_numeric(struct l2_state_pocsag *rx, char* buff, unsigned int size)
 {
-    static const char *conv_table = "084 2.6]195-3U7[";
+    static const char *conv_table = "084 2*6]195-3U7["; // modified spare character to be compatible to Swissphone's pcrypt library
     unsigned char *bp = rx->buffer;
     int len = rx->numnibbles;
     char* cp = buff;
@@ -254,6 +254,9 @@ static unsigned int print_msg_numeric(struct l2_state_pocsag *rx, char* buff, un
     if ( (unsigned int) len >= size)
         len = size-1;
     for (; len > 0; bp++, len -= 2) {
+
+
+
         *cp++ = conv_table[(*bp >> 4) & 0xf];
         if (len > 1)
             *cp++ = conv_table[*bp & 0xf];
